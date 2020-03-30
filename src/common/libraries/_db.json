@@ -1,0 +1,13 @@
+{
+  "options": [
+    {
+      "name": "active_plugins",
+      "value": {
+        "my-comments": {
+          "active": true
+        }
+      },
+      "autoload": "yes"
+    }
+  ]
+}

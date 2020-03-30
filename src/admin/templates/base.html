@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block header %}
+    <title>{{ title }}</title>
+  {% endblock %}
+</head>
+<body>
+  <header>
+    <h1>Header</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Our team</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <form>
+      <input type="search" name="q" placeholder="Search query">
+      <input type="submit" value="Go!">
+    </form>
+  </nav>
+
+  {% block content %}
+    <ul>
+      {% for name, item in items %}
+        <li>{{ name }}: {{ item }}</li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  <main>
+    <aside>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#">Oh I do like to be beside the seaside</a></li>
+        <li><a href="#">Oh I do like to be beside the sea</a></li>
+        <li><a href="#">Although in the North of England</a></li>
+        <li><a href="#">It never stops raining</a></li>
+        <li><a href="#">Oh well...</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer>
+    {% block footer %}
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    {% endblock %}
+  </footer>
+</body>
+</html>
