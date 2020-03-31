@@ -1,11 +1,12 @@
-const app = require('./app')
+const server = require('./app')
 
 const Config = require('../common/libraries/Config')
 const Module = require('../common/libraries/Module')
 const Plugin = require('../common/libraries/Plugin')
 
 class Boostrap {
-  constructor() {
+  constructor(_server) {
+    this.server = _server;
     this.config = new Config(this);
     this.module = new Module(this);
 
@@ -16,11 +17,11 @@ class Boostrap {
 
 module.exports = {
   init: () => {
-    const boot = new Boostrap();
+    const boot = new Boostrap(server);
 
     boot.module.lookUp();
     boot.plugin.lookUp();
 
-    return app
+    return server
   }
 };
