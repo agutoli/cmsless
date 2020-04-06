@@ -49,6 +49,7 @@ functions:
           route: $disconnect
 plugins:
   - serverless-offline
+  - serverless-layers
 
 resources:
   Resources:

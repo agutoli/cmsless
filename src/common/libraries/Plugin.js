@@ -16,7 +16,9 @@ class PluginManager {
   register_routes(routes) {
     const router = express.Router()
     for (let route of routes) {
-      router[route.method.toLowerCase()](route.path, route.handler)
+      router[route.method.toLowerCase()](route.path, (req, res) => {
+        res.send(route.handler());
+      })
     }
     return router;
   }
@@ -52,7 +54,8 @@ class PluginManager {
         try {
           const info = require(manifest);
           if (this.is_plugin_active(info.slug)) {
-            this._ctx.server.use(this.register_routes(require(routes)))
+            const plgRoutes = require(routes);
+            this._ctx.server.use(this.register_routes(plgRoutes))
           }
         } catch(err) {
           console.log('plugin: can not load plugin '+ pluginName);

@@ -12,5 +12,4 @@ module.exports = function (ctx, plugin) {
   plugin.register_hook('install', install);
   plugin.register_hook('uninstall', uninstall);
 
-  return {};
 };

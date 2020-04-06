@@ -1,3 +1,3 @@
-module.exports = (req, res) => {
-  res.render('comments.html')
+module.exports = () => {
+  return 'my plugin'
 }
