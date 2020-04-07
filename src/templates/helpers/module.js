@@ -1,7 +1,7 @@
 const nunjucks = require('nunjucks')
 
-module.exports = function() {
-  this.tags = ["static"];
+module.exports = function(items) {
+  this.tags = ["module"];
 
   this.parse = function(parser, nodes, lexer) {
     var tok = parser.nextToken();
@@ -12,6 +12,6 @@ module.exports = function() {
 
   this.run = function(context, stringArg, callback) {
     let ret = new nunjucks.runtime.SafeString(stringArg);
-    callback(null, ret);
+    callback(null, items.join(''));
   };
 };

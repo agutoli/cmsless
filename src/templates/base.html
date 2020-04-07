@@ -15,6 +15,8 @@
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
+  {% module "sidebar" %}
+
   {% block top %}
   <header>
     <h1>Header {{ test }}</h1>

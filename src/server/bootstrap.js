@@ -3,18 +3,17 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 
 const Config = require('../common/libraries/Config')
-const Module = require('../common/libraries/Module')
-const Plugin = require('../common/libraries/Plugin')
+const ModuleManager = require('../common/libraries/ModuleManager')
+const PluginManager = require('../common/libraries/PluginManager')
 
 class Boostrap {
   constructor(server) {
     
     this.server = server;
     this.config = new Config(this);
-    this.module = new Module(this);
-
+    this.module = new ModuleManager(this);
     // load plugins at end
-    this.plugin = new Plugin(this);
+    this.plugin = new PluginManager(this);
   }
 }
 
@@ -23,21 +22,22 @@ module.exports = {
     const server = express()
     
     const env = nunjucks.configure(path.join(__dirname, '../templates'), {
-      autoescape: true,
+      autoescape: false,
       express: server
     });
-
+    
     const StaticTag = require('../templates/helpers/static')
-
-    env.addExtension('static', new StaticTag())
+    const ModuleTag = require('../templates/helpers/module')
 
     const boot = new Boostrap(server);
 
-    boot.module.lookUp();
+    env.addExtension('static', new StaticTag())
+    env.addExtension('module', new ModuleTag(boot.module.lookUp()))
+
     boot.plugin.lookUp();
 
     server.get('/', (req, res) => {
-      var tmpl = env.getTemplate('index.html').render({test: 123});
+      var tmpl = env.getTemplate('index.html').render({});
       res.send(tmpl);
     });
 
