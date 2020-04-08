@@ -25,6 +25,8 @@ module.exports = {
       autoescape: false,
       express: server
     });
+
+    server.use(express.static(path.join(__dirname, '../admin/static')))
     
     const StaticTag = require('../templates/helpers/static')
     const ModuleTag = require('../templates/helpers/module')

@@ -14,7 +14,7 @@ module.exports = ({ $core, $module }) => {
   // const users = await $core.db.query({ type:  'user' }).fetchAll();
   return {
     render: ($tmpl) => {
-      return $tmpl.getTemplate('sidebar.html');
+      return $tmpl.getTemplate('header.html');
     }
   }
 };
