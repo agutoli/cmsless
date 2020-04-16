@@ -10,8 +10,8 @@ module.exports = function(items) {
     return new nodes.CallExtensionAsync(this, "run", args);
   };
 
-  this.run = function(context, stringArg, callback) {
-    let ret = new nunjucks.runtime.SafeString(stringArg);
-    callback(null, items.join(''));
+  this.run = function(context, moduleName, callback) {
+    // let ret = new nunjucks.runtime.SafeString(moduleName);
+    callback(null, items[moduleName]);
   };
 };

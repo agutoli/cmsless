@@ -1,0 +1,15 @@
+header {
+  background: #333;
+  padding: 20px;
+  color: white;
+}
+
+aside {
+  background: rgb(240, 240, 240);
+}
+
+footer {
+  background: #444;
+  padding: 20px;
+  color: white;
+}

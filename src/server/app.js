@@ -17,13 +17,4 @@ const env = nunjucks.configure([
 
 env.addExtension('static', new StaticTag())
 
-//const Plugin = require('../plugins/base')
-//const Comments = require('../plugins/comments')
-
-//console.log(new Comments(app, new Plugin));
-
-// app.get('/', (req, res) => {
-//   res.render('index.html');
-// });
-
 module.exports = app

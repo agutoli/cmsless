@@ -12,14 +12,13 @@ const Module = require('./Module')
 class ModuleManager extends Core {
   constructor(stack) {
     super(stack)
-    this._preLoaded = ['a', 'b', 'c'];
+    this.registered = {};
   }
 
   lookUp() {
     const modulesDir = path.resolve(path.join(__dirname, '../../admin/modules'))
     const modules = fs.readdirSync(modulesDir);
 
-    const _items = [];
     for (let moduleName of modules) {
       const moduleDir = path.resolve(path.join(modulesDir, moduleName))
       const manifest = path.join(moduleDir, 'manifest.json')
@@ -45,9 +44,7 @@ class ModuleManager extends Core {
             })
           }))
         
-          _items.push(res.render(templ).render({ moduleDir }));
-
-
+          this.registered[moduleName] = res.render(templ).render({ moduleName });
           console.log('-> loaded:', moduleName);
         } catch(err) {
           console.log(err)
@@ -55,7 +52,7 @@ class ModuleManager extends Core {
         }
       }
     }
-    return _items;
+    return this.registered;
   }
 }
 

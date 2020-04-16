@@ -1,14 +1,15 @@
 {
   "name": "cmsless",
   "version": "1.0.0",
-  "description": "",
+  "description": "POC cms",
   "main": "handler.js",
   "scripts": {
     "start": "nodemon -e js,html --watch src --exec 'sls' offline start",
     "deploy": "sls deploy"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": "git@github.com:agutoli/cmsless.git",
   "dependencies": {
     "aws-sdk": "^2.644.0",
     "aws-serverless-express": "^3.3.6",

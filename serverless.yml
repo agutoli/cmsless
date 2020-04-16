@@ -3,8 +3,9 @@ service: seams
 provider:
   name: aws
   runtime: nodejs12.x
+  region: ap-southeast-2
   deploymentBucket:
-    name: lambdas-deploys
+    name: serverless-ap-southeast-2-336870424643
   iamRoleStatements:
     - Effect: Allow
       Action:

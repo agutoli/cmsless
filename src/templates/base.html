@@ -9,21 +9,20 @@
   {% block responsive %}
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">
     {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
   {% endblock %}
   {% block head %}{% endblock %}
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
-  {% module "sidebar" %}
-
+  {% module "header" %}
+  
   {% block top %}
-  <header>
     <h1>Header {{ test }}</h1>
     {% for item in region.header -%}
       {{ item }},
     {%- endfor %}
-  </header>
   <nav>
     <ul>
       <li><a href="#">Home</a></li>
@@ -47,22 +46,9 @@
   {% endblock %}
 
   <main>
-    <aside>
-      <h2>Related</h2>
-      <ul>
-        <li><a href="#">Oh I do like to be beside the seaside</a></li>
-        <li><a href="#">Oh I do like to be beside the sea</a></li>
-        <li><a href="#">Although in the North of England</a></li>
-        <li><a href="#">It never stops raining</a></li>
-        <li><a href="#">Oh well...</a></li>
-      </ul>
-    </aside>
-  </main>
+    {% module "sidebar" %}
 
-  <footer>
-    {% block footer %}
-      <p>©Copyright 2050 by nobody. All rights reversed.</p>
-    {% endblock %}
-  </footer>
+  </main>
+  {% module "footer"  %}
 </body>
 </html>
