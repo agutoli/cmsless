@@ -16,25 +16,15 @@
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
+  {% module "secondary_menu" %}
   {% module "header" %}
+  {% module "primary_menu" %}
 
   {% block top %}
     <h1>Header {{ test }}</h1>
     {% for item in region.header -%}
       {{ item }},
     {%- endfor %}
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Our team</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <form>
-      <input type="search" name="q" placeholder="Search query">
-      <input type="submit" value="Go!">
-    </form>
-  </nav>
   {% endblock %}
 
   {% block content %}

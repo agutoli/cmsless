@@ -1,11 +1,10 @@
-{% extensible_area "inside_before" %}
-{% block container %}
-<footer>
-  {% extensible_area "inside_before" %}
-  {% block footer %}
-    <p>©Copyright 2050 by nobody. All rights reversed.</p>
+{% block footer %}
+  {% extensible_area "outside_before" %}
+  {% block container %}
+  <footer>
+    {% extensible_area "inside_before" %}
+    {% extensible_area "inside_after" %}
+  </footer>
   {% endblock %}
-  {% extensible_area "inside_after" %}
-</footer>
+  {% extensible_area "outside_after" %}
 {% endblock %}
-{% extensible_area "inside_after" %}
