@@ -11,7 +11,7 @@ module.exports = function(items) {
   };
 
   this.run = function(context, moduleName, callback) {
-    // let ret = new nunjucks.runtime.SafeString(moduleName);
-    callback(null, items[moduleName]);
+    const html = '<div class="module-edition">' + items[moduleName] + '</div class="module-edition">';
+    callback(null, html);
   };
 };

@@ -17,7 +17,7 @@
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
   {% module "header" %}
-  
+
   {% block top %}
     <h1>Header {{ test }}</h1>
     {% for item in region.header -%}
@@ -47,7 +47,6 @@
 
   <main>
     {% module "sidebar" %}
-
   </main>
   {% module "footer"  %}
 </body>

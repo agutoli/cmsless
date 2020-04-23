@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
-    "serverless-layers": "^2.1.2",
+    "serverless-layers": "2.2.2",
     "serverless-offline": "^6.1.0"
   }
 }

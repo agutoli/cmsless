@@ -11,7 +11,8 @@ module.exports = function(instance) {
   };
 
   this.run = function(context, stringArg, callback) {
-    let ret = new nunjucks.runtime.SafeString('<b>'+stringArg+'</b>');
+    const { moduleName } = context.ctx;
+    let ret = new nunjucks.runtime.SafeString('<span class="extensible-area">'+ moduleName + '.' + stringArg+'</span>');
     callback(null, ret);
   };
 };

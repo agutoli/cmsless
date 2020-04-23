@@ -13,3 +13,17 @@ footer {
   padding: 20px;
   color: white;
 }
+
+.module-edition {
+  border: 1px dashed red;
+  margin: 5px;
+  padding: 5px;
+}
+
+.extensible-area {
+  display: inline-block;
+  border: 1px dashed red;
+  padding: 2px 5px;
+  color: black;
+  background: #fff5bf;
+}

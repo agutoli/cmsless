@@ -1,3 +1,7 @@
-<header>
-  header
-</header>
+{% extensible_area "outside_before" %}
+  <header>
+    {% extensible_area "inside_before" %}
+    header
+    {% extensible_area "inside_after" %}
+  </header>
+{% extensible_area "outside_after" %}

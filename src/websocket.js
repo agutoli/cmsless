@@ -9,7 +9,6 @@ const dynamodb = new DynamoDB.DocumentClient();
 const connectionTable = process.env.CONNECTIONS_TABLE;
 
 module.exports.handler = async (event, context) => {
-  // console.log("EVENT: \n" + JSON.stringify(event, null, 2));
   const { body, requestContext: { connectionId, routeKey }} = event;
   switch(routeKey) {
     case '$connect':
