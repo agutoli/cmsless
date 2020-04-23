@@ -1,0 +1,10 @@
+{
+  "slug": "social-buttons",
+  "name": "Social Buttons",
+  "version": "1.0.0",
+  "license": "MIT",
+  "developers": [
+    "Bruno Agutoli <bruno.agutoli@gmail.com>"
+  ],
+  "description": "Nice commnets, very cool!"
+}

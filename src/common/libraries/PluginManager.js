@@ -6,10 +6,19 @@ const lodashGet = require('lodash.get')
 class PluginManager {
   constructor(ctx) {
     this._ctx = ctx;
+
+    this.module_areas = {}
+  }
+
+  register_modules_areas(areaName, areaFunc) {
+    if (!this.module_areas[areaName]) {
+      this.module_areas[areaName] = [];
+    }
+    this.module_areas[areaName].push(areaFunc);
   }
 
   /**
-   * It checks if plugin is activated 
+   * It checks if plugin is activated
    *
    * @returns {object}
    */
@@ -24,7 +33,7 @@ class PluginManager {
   }
 
   /**
-   * It checks if plugin is activated 
+   * It checks if plugin is activated
    *
    * @returns {object}
    */
@@ -33,7 +42,7 @@ class PluginManager {
   }
 
   /**
-   * It checks if plugin is activated 
+   * It checks if plugin is activated
    *
    * @param {string} pluginSlug
    * @returns {boolean}
@@ -44,20 +53,23 @@ class PluginManager {
   }
 
   lookUp() {
-    const pluginDir = path.resolve(path.join(__dirname, '../../plugins'))
+    const pluginDir = path.resolve(path.join(__dirname, '../../admin/plugins'))
     const plugins = fs.readdirSync(pluginDir);
-
     for (let pluginName of plugins) {
-      const routes = path.resolve(path.join(pluginDir, pluginName, 'routes.js'))
-      const manifest = path.resolve(path.join(pluginDir, pluginName, 'manifest.json'))
-      if (fs.existsSync(manifest)) {
+      const pluginEntry = path.resolve(path.join(pluginDir, pluginName));
+      const pluginManifest = path.resolve(path.join(pluginDir, pluginName, 'plugin.json'));
+      if (fs.existsSync(pluginManifest)) {
         try {
-          const info = require(manifest);
-          if (this.is_plugin_active(info.slug)) {
-            const plgRoutes = require(routes);
-            this._ctx.server.use(this.register_routes(plgRoutes))
+          const info = require(pluginManifest);
+          const pluginModule = require(pluginEntry);
+          const { render_areas } = pluginModule;
+
+          for (let area in render_areas) {
+            this.register_modules_areas(area, render_areas[area]);
           }
+
         } catch(err) {
+          console.log(err);
           console.log('plugin: can not load plugin '+ pluginName);
         }
       }

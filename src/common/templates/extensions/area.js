@@ -1,6 +1,8 @@
 const nunjucks = require('nunjucks')
 
-module.exports = function(instance) {
+module.exports = function({ $core }) {
+  const { module_areas } = $core.plugin;
+
   this.tags = ["extensible_area"];
 
   this.parse = function(parser, nodes, lexer) {
@@ -10,9 +12,9 @@ module.exports = function(instance) {
     return new nodes.CallExtensionAsync(this, "run", args);
   };
 
-  this.run = function(context, stringArg, callback) {
-    const { moduleName } = context.ctx;
-    let ret = new nunjucks.runtime.SafeString('<span class="extensible-area">'+ moduleName + '.' + stringArg+'</span>');
-    callback(null, ret);
+  this.run = function(context, areaName, callback) {
+    const area_id = `${context.ctx.moduleName}.${areaName}`;
+    const plugins = module_areas[area_id] || [];
+    callback(null, plugins.map(plugin => plugin($core)).join(''));
   };
 };

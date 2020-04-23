@@ -18,6 +18,7 @@ class ModuleManager extends Core {
   lookUp() {
     const modulesDir = path.resolve(path.join(__dirname, '../../admin/modules'))
     const modules = fs.readdirSync(modulesDir);
+    const moduleAreas = this.$core.plugin.module_areas;
 
     for (let moduleName of modules) {
       const moduleDir = path.resolve(path.join(modulesDir, moduleName))
@@ -40,11 +41,15 @@ class ModuleManager extends Core {
               info,
               entry,
               moduleDir,
+              moduleAreas,
               modulesDir
             })
           }))
-        
-          this.registered[moduleName] = res.render(templ).render({ moduleName });
+
+          Object.defineProperty(this.registered, moduleName, {
+            get : () => res.render(templ).render({ moduleName })
+          });
+
           console.log('-> loaded:', moduleName);
         } catch(err) {
           console.log(err)

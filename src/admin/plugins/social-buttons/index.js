@@ -1,7 +1,7 @@
 function MyButtonRender() {
   return `
     <div>
-      <button>Tag of clouds</button>
+      <button>Facebook</button>
     </div>
   `
 }
