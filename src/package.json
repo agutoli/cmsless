@@ -1,0 +1,34 @@
+{
+  "name": "cmsless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.644.0",
+    "aws-serverless-express": "^3.3.6",
+    "express": "^4.17.1",
+    "lodash.get": "^4.4.2",
+    "nodemon": "^2.0.2",
+    "nunjucks": "^3.2.1",
+    "serverless-layers": "^2.2.2",
+    "serverless-offline": "^6.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon -e js,html --watch ./ --exec 'sls' offline start -c ./serverless.yml",
+    "deploy": "sls deploy -c lib/serverless.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agutoli/cmsless.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agutoli/cmsless/issues"
+  },
+  "homepage": "https://github.com/agutoli/cmsless#readme"
+}

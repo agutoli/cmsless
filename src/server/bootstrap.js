@@ -2,13 +2,14 @@ const path = require('path')
 const express = require('express')
 const nunjucks = require('nunjucks')
 
+const settings = require('../settings')
 const Config = require('../common/libraries/Config')
 const ModuleManager = require('../common/libraries/ModuleManager')
 const PluginManager = require('../common/libraries/PluginManager')
 
 class Boostrap {
   constructor(server) {
-
+    this.settings = settings;
     this.server = server;
     this.config = new Config(this);
 
@@ -24,22 +25,27 @@ module.exports = {
   init: () => {
     const server = express()
 
-    const env = nunjucks.configure(path.join(__dirname, '../templates'), {
+    const env = nunjucks.configure(path.join(__dirname, '../admin/templates'), {
       autoescape: false,
       express: server
     });
 
-    server.use(express.static(path.join(__dirname, '../admin/static')))
+    server.use(settings.STATIC_URL, express.static(path.join(__dirname, '../admin/static')))
 
-    const StaticTag = require('../templates/helpers/static')
-    const ModuleTag = require('../templates/helpers/module')
+    const StaticTag = require('../admin/templates/helpers/static')
+    const ModuleTag = require('../admin/templates/helpers/module')
 
     const boot = new Boostrap(server);
 
-    env.addExtension('static', new StaticTag())
-    env.addExtension('module', new ModuleTag(boot.module.lookUp()))
+    env.addExtension('static', new StaticTag(boot))
+    env.addExtension('module', new ModuleTag(boot))
 
     server.get('/', (req, res) => {
+      var tmpl = env.getTemplate('index.html').render({});
+      res.send(tmpl);
+    });
+
+    server.get('/admin', (req, res) => {
       var tmpl = env.getTemplate('index.html').render({});
       res.send(tmpl);
     });

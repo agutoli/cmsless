@@ -1,6 +1,8 @@
+const path = require('path')
 const nunjucks = require('nunjucks')
 
-module.exports = function() {
+module.exports = function(ctx) {
+  const { STATIC_URL } = ctx.settings;
   this.tags = ["static"];
 
   this.parse = function(parser, nodes, lexer) {
@@ -11,7 +13,9 @@ module.exports = function() {
   };
 
   this.run = function(context, stringArg, callback) {
-    let ret = new nunjucks.runtime.SafeString(stringArg);
-    callback(null, ret);
+    if (process.env.STAGE !== 'dev') {
+      return callback(null, path.join(STATIC_URL, stringArg));
+    }
+    callback(null, path.join('/dev', STATIC_URL, stringArg));
   };
 };

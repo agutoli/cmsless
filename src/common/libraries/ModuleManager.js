@@ -47,7 +47,9 @@ class ModuleManager extends Core {
           }))
 
           Object.defineProperty(this.registered, moduleName, {
-            get : () => res.render(templ).render({ moduleName })
+            get : () => res.render(templ).render({
+              moduleName
+            })
           });
 
           console.log('-> loaded:', moduleName);

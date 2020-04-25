@@ -4,7 +4,6 @@ module.exports = {
    * before modules
    */
   render_areas: {
-    "sidebar.outside_before": () => '<div class="sidebar-tag-cloud">',
-    "sidebar.outside_after": () => '</div>',
+    "footer.inside_before": () => '<button>My Plugin</button>',
   }
 }

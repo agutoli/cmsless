@@ -1,13 +1,20 @@
+{% include "icons-symbols.html" %}
+
+{% macro icon(name) %}
+  <svg><use xlink:href="#{{ name }}" /></svg>
+{% endmacro %}
+
 {% extensible_area "outside_before" %}
-<aside>
+<aside class="cmsless-sidebar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Navbar</a>
   {% extensible_area "inside_before" %}
-  <h2>Related</h2>
-  <ul>
-    <li><a href="#">Oh I do like to be beside the seaside</a></li>
-    <li><a href="#">Oh I do like to be beside the sea</a></li>
-    <li><a href="#">Although in the North of England</a></li>
-    <li><a href="#">It never stops raining</a></li>
-    <li><a href="#">Oh well...</a></li>
+  <ul class="vertical-menu-items">
+    <li>{{ icon('house') }}</li>
+    <li>{{ icon('card-checklist') }}</li>
+    <li>{{ icon('graph-up') }}</li>
   </ul>
   {% extensible_area "inside_after" %}
 </aside>

@@ -1,17 +1,57 @@
+body {
+  background: #F4F4F4;
+}
+
 header {
-  background: #333;
-  padding: 20px;
+  padding: 20px 0;
   color: white;
 }
 
 aside {
-  background: rgb(240, 240, 240);
+  background: #354555;
 }
 
-footer {
-  background: #444;
-  padding: 20px;
-  color: white;
+ul.vertical-menu-items {
+  margin: 0;
+  padding: 0;
+}
+
+ul.vertical-menu-items li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+ul.vertical-menu-items li > svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+  text-align: center;
+  opacity: 0.5;
+}
+
+ul.vertical-menu-items li:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+ul.vertical-menu-items li:hover svg {
+  opacity: 1;
+}
+
+.navbar-brand {
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: center;
+  width: 70px;
+  height: 70px;
+  text-indent: -100px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 .module-edition {
@@ -26,4 +66,37 @@ footer {
   padding: 2px 5px;
   color: black;
   background: #fff5bf;
+}
+
+.page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.cmsless-sidebar {
+  width: 70px;
+}
+
+.no-padding {
+  padding-right:0;
+  padding-left:0;
+}
+
+header.cmsless-navbar {
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+footer.cmsless-footer {
+  background: #444;
+  padding: 20px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  right: 0;
+  margin-left: 10px;
+  color: white;
 }

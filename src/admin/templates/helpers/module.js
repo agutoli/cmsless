@@ -1,7 +1,9 @@
 const nunjucks = require('nunjucks')
 
-module.exports = function(items) {
+module.exports = function(ctx) {
   this.tags = ["module"];
+
+  const items = ctx.module.lookUp();
 
   this.parse = function(parser, nodes, lexer) {
     var tok = parser.nextToken();
@@ -11,7 +13,6 @@ module.exports = function(items) {
   };
 
   this.run = function(context, moduleName, callback) {
-    const html = '<div class="module-edition">' + items[moduleName] + '</div class="module-edition">';
-    callback(null, html);
+    callback(null, items[moduleName]);
   };
 };

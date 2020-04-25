@@ -18,6 +18,7 @@ provider:
           - ConnectionsTable
           - Arn
   environment:
+    STAGE: ${self:custom.stage}
     APIG_ENDPOINT:
       Fn::Join:
       - ''
@@ -34,13 +35,14 @@ custom:
 
 functions:
   web:
-    handler: src/web.handler
+    handler: web.handler
     events:
       - http:
           path: '{proxy+}'
           method: GET
+          contentHandling: CONVERT_TO_BINARY
   websocket:
-    handler: src/websocket.handler
+    handler: websocket.handler
     events:
       - websocket:
           route: $connect

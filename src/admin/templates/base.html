@@ -1,54 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block header %}
-    <title>{{ title }}</title>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  {% block extrastyle %}{% endblock %}
+  {% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
   {% endblock %}
+  {% block head %}{% endblock %}
+  {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
-<body>
-  <header>
-    <h1>Header</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Our team</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <form>
-      <input type="search" name="q" placeholder="Search query">
-      <input type="submit" value="Go!">
-    </form>
-  </nav>
-
-  {% block content %}
-    <ul>
-      {% for name, item in items %}
-        <li>{{ name }}: {{ item }}</li>
-      {% endfor %}
-    </ul>
-  {% endblock %}
-
-  <main>
-    <aside>
-      <h2>Related</h2>
-      <ul>
-        <li><a href="#">Oh I do like to be beside the seaside</a></li>
-        <li><a href="#">Oh I do like to be beside the sea</a></li>
-        <li><a href="#">Although in the North of England</a></li>
-        <li><a href="#">It never stops raining</a></li>
-        <li><a href="#">Oh well...</a></li>
-      </ul>
-    </aside>
-  </main>
-
-  <footer>
-    {% block footer %}
-      <p>©Copyright 2050 by nobody. All rights reversed.</p>
-    {% endblock %}
-  </footer>
+<body class="{% block bodyclass %}{% endblock %}">
+  <div class="page">
+    {% module "sidebar" %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 no-padding">
+          {% module "header" %}
+        </div>
+        <div class="col-12 no-padding">
+          {% module "primary_menu" %}
+        </div>
+        <div class="col-12">
+          {% block content %}
+            <ul>
+              {% for name, item in items %}
+                <li>{{ name }}: {{ item }}</li>
+              {% endfor %}
+            </ul>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
