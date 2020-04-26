@@ -1,31 +1,41 @@
-{% include "icons-symbols.svg" %}
-
-{% macro icon(name, size=16) %}
-  <svg style="height:{{ size }}px;width:{{ size }}px">
-    <use xlink:href="#{{ name }}" />
-  </svg>
-{% endmacro %}
-
+{% extensible_area "outside_before" %}
 <header class="cmsless-navbar navbar navbar-expand-lg navbar-light bg-light">
+  {% include "icons-symbols.svg" %}
+  {% macro icon(name, size=16) %}
+    <svg style="height:{{ size }}px;width:{{ size }}px">
+      <use xlink:href="#{{ name }}" />
+    </svg>
+  {% endmacro %}
+  {% extensible_area "inside_before" %}
+
+  {% block header_search %}
   <form class="form-inline">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="search..." aria-label="Search" aria-describedby="basic-addon1" />
     </div>
   </form>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="header-alert nav-item justify-content-end d-flex align-items-center">
-        {{ icon('flag') }}
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Bruno Agutoli</a>
-      </li>
-      <li class="nav-item thumbnail">
-        <img src="https://via.placeholder.com/40" class="img-fluid img-thumbnail" alt="...">
-      </li>
-    </ul>
-  </div>
+  {% endblock %}
+
+  {% extensible_area "inside_center" %}
+
+  {% block header_right %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="header-alert nav-item justify-content-end d-flex align-items-center">
+          {{ icon('flag') }}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Bruno Agutoli</a>
+        </li>
+        <li class="nav-item thumbnail">
+          <img src="https://via.placeholder.com/40" class="img-fluid img-thumbnail" alt="...">
+        </li>
+      </ul>
+    </div>
+  {% endblock %}
+  {% extensible_area "inside_after" %}
 </header>
+{% extensible_area "outside_after" %}

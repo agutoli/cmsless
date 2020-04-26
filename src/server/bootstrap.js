@@ -10,6 +10,12 @@ const PluginManager = require('../common/libraries/PluginManager')
 class Boostrap {
   constructor(server) {
     this.settings = settings;
+
+    global.__ = function i18n(input) {
+      // temporary func
+      return input;
+    }
+
     this.server = server;
     this.config = new Config(this);
 

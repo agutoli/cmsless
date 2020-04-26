@@ -4,6 +4,6 @@ module.exports = {
    * before modules
    */
   render_areas: {
-    "footer.inside_before": () => '<button>My Plugin</button>',
+    "header.inside_center": () => '<button>Plugin Loaded</button>',
   }
 }
