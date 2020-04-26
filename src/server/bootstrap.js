@@ -70,6 +70,16 @@ module.exports = {
       var tmpl = env.getTemplate('edit.html').render({});
       res.send(tmpl);
     });
+
+    server.get('/admin/plugins', (req, res) => {
+      var tmpl = env.getTemplate('plugins.html').render({});
+      res.send(tmpl);
+    });
+
+    server.get('/admin/options', (req, res) => {
+      var tmpl = env.getTemplate('plugins.html').render({});
+      res.send(tmpl);
+    });
     return server
   }
 };

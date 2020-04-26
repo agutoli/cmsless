@@ -3,7 +3,7 @@
   {% include "icons-symbols.svg" %}
 
   {% macro icon(name) %}
-    <svg><use xlink:href="#{{ name }}" /></svg>
+      <svg><use xlink:href="#{{ name }}" /></svg>
   {% endmacro %}
 
   <a class="navbar-brand" href="#">
@@ -12,14 +12,14 @@
 
   {% extensible_area "inside_before" %}
   <ul class="vertical-menu-items">
-    <li>{{ icon('house') }}</li>
-    <li>{{ icon('icon-file-post') }}</li>
-    <li>{{ icon('icon-images') }}</li>
-    <li>{{ icon('icon-files') }}</li>
-    <li>{{ icon('chat-square') }}</li>
-    <li>{{ icon('card-checklist') }}</li>
-    <li>{{ icon('graph-up') }}</li>
-    <li>{{ icon('gear') }}</li>
+    <li><a href="/dev/admin">{{ icon('house') }}</a></li>
+    <li><a href="/dev/admin/list">{{ icon('icon-file-post') }}</a></li>
+    <li><a href="/dev/admin/gallery">{{ icon('icon-images') }}</a></li>
+    <li><a href="/dev/admin">{{ icon('chat-square') }}</a></li>
+    <li><a href="/dev/admin">{{ icon('card-checklist') }}</a></li>
+    <li><a href="/dev/admin">{{ icon('graph-up') }}</a></li>
+    <li><a href="/dev/admin/plugins">{{ icon('icon-wrench') }}</a></li>
+    <li><a href="/dev/admin/options">{{ icon('gear') }}</a></li>
   </ul>
   {% extensible_area "inside_after" %}
 </aside>

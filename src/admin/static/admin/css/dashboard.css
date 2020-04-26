@@ -17,6 +17,10 @@ ul.vertical-menu-items {
 }
 
 ul.vertical-menu-items li {
+
+}
+
+ul.vertical-menu-items li a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +29,7 @@ ul.vertical-menu-items li {
   cursor: pointer;
 }
 
-ul.vertical-menu-items li > svg {
+ul.vertical-menu-items li > a svg {
   width: 24px;
   height: 24px;
   fill: white;
@@ -65,7 +69,64 @@ aside.cmsless-control {
   top: 0;
   left: 0;
   overflow: hidden;
-  box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.plugin-table {
+  /* border: 1px solid #ccc; */
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  border-spacing: 0px;
+  border-collapse: separate;
+  box-shadow: 0px 0px 1px rgba(0, 0, 3, 0.2);
+}
+
+.plugin-table td {
+  font-size: 13px;
+}
+
+.plugin-table td p {
+  margin-bottom: 5px;
+}
+
+.plugin-table thead td,
+.plugin-table tfoot td {
+  color: #777;
+  background: #f0f0f0;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.plugin-table tbody,
+.plugin-table tbody td {
+  padding-left: 8px;
+}
+
+.plugin-table tbody td:first-child {
+  border-left: 4px solid #a1cdea;
+}
+
+.plugin-table td ul.plugin-actions {
+  display: flex;
+  margin: 5px 0 0 0 !important;
+  padding: 0;
+}
+
+.plugin-table td ul.plugin-actions li {
+  list-style: none;
+  border-right: 1px solid #eee;
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.plugin-table td ul.plugin-actions li:last-child {
+  list-style: none;
+  border-right: none;
+}
+
+.plugin-table .plugin-list-header td:first-child {
+  width: 40px;
 }
 
 .module-edition {

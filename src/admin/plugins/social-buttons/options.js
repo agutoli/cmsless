@@ -30,7 +30,7 @@ module.exports = ({ $plugin }) => {
     title: __('Card Name'),
     input_type: 'select',
     input_options: [
-      {value: 1, label: 'Opt 1'}
+      { value: 1, label: 'Opt 1' }
     ]
   });
 }
