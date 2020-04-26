@@ -1,16 +1,22 @@
-{% include "icons-symbols.html" %}
-
-{% macro icon(name) %}
-  <svg><use xlink:href="#{{ name }}" /></svg>
-{% endmacro %}
-
 {% extensible_area "outside_before" %}
 <aside class="cmsless-sidebar navbar-light">
+  {% include "icons-symbols.svg" %}
 
-  <a class="navbar-brand" href="#">Navbar</a>
+  {% macro icon(name) %}
+    <svg><use xlink:href="#{{ name }}" /></svg>
+  {% endmacro %}
+
+  <a class="navbar-brand" href="#">
+    {{ icon('social-logo') }}
+  </a>
+
   {% extensible_area "inside_before" %}
   <ul class="vertical-menu-items">
     <li>{{ icon('house') }}</li>
+    <li>{{ icon('icon-file-post') }}</li>
+    <li>{{ icon('icon-images') }}</li>
+    <li>{{ icon('icon-files') }}</li>
+    <li>{{ icon('chat-square') }}</li>
     <li>{{ icon('card-checklist') }}</li>
     <li>{{ icon('graph-up') }}</li>
     <li>{{ icon('gear') }}</li>

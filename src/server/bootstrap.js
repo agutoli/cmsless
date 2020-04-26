@@ -46,10 +46,24 @@ module.exports = {
     });
 
     server.get('/admin', (req, res) => {
-      var tmpl = env.getTemplate('index.html').render({});
+      var tmpl = env.getTemplate('home.html').render({});
       res.send(tmpl);
     });
 
+    server.get('/admin/gallery', (req, res) => {
+      var tmpl = env.getTemplate('gallery.html').render({});
+      res.send(tmpl);
+    });
+
+    server.get('/admin/list', (req, res) => {
+      var tmpl = env.getTemplate('list.html').render({});
+      res.send(tmpl);
+    });
+
+    server.get('/admin/edit', (req, res) => {
+      var tmpl = env.getTemplate('edit.html').render({});
+      res.send(tmpl);
+    });
     return server
   }
 };

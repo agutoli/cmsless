@@ -1,7 +1,28 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Library</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Data</li>
-  </ol>
-</nav>
+{% include "icons-symbols.svg" %}
+
+{% macro icon(name, size=16) %}
+  <svg style="height:{{ size }}px;width:{{ size }}px">
+    <use xlink:href="#{{ name }}" />
+  </svg>
+{% endmacro %}
+
+<div class="cmsless-primary-menu container-fluid no-padding">
+  <div class="row">
+    <div class="col-8">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Library</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col-4 justify-content-end d-flex align-items-center">
+      <ul class="content-indicators">
+        <li>{{ icon('star-fill') }}</li>
+        <li>{{ icon('funnel-fill') }}</li>
+        <li>{{ icon('list') }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
