@@ -11,6 +11,7 @@ class Boostrap {
   constructor(server) {
     this.settings = settings;
 
+
     global.__ = function i18n(input) {
       // temporary func
       return input;
@@ -73,6 +74,11 @@ module.exports = {
 
     server.get('/admin/plugins', (req, res) => {
       var tmpl = env.getTemplate('plugins.html').render({});
+      res.send(tmpl);
+    });
+
+    server.get('/admin/plugins/:plugin', (req, res) => {
+      var tmpl = env.getTemplate('plugins_options.html').render({});
       res.send(tmpl);
     });
 

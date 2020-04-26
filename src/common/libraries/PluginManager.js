@@ -10,11 +10,11 @@ class PluginManager {
     this.module_areas = {}
   }
 
-  register_modules_areas(areaName, areaFunc) {
+  register_modules_areas(areaName, render, opts) {
     if (!this.module_areas[areaName]) {
       this.module_areas[areaName] = [];
     }
-    this.module_areas[areaName].push(areaFunc);
+    this.module_areas[areaName].push({ render, opts });
   }
 
   /**
@@ -30,6 +30,14 @@ class PluginManager {
       })
     }
     return router;
+  }
+
+  load_plugin_options(pluginEntry) {
+    const configFile = path.join(pluginEntry, 'options.js');
+    if (fs.existsSync(configFile)) {
+      return require(configFile);
+    }
+    return () => {};
   }
 
   /**
@@ -57,7 +65,11 @@ class PluginManager {
     const plugins = fs.readdirSync(pluginDir);
     for (let pluginName of plugins) {
       const pluginEntry = path.resolve(path.join(pluginDir, pluginName));
-      const pluginManifest = path.resolve(path.join(pluginDir, pluginName, 'plugin.json'));
+
+      // load plugins options
+      const optionsRender = this.load_plugin_options(pluginEntry);
+      const pluginManifest = path.join(pluginEntry, 'plugin.json');
+
       if (fs.existsSync(pluginManifest)) {
         try {
           const info = require(pluginManifest);
@@ -65,9 +77,11 @@ class PluginManager {
           const { render_areas } = pluginModule;
 
           for (let area in render_areas) {
-            this.register_modules_areas(area, render_areas[area]);
+            this.register_modules_areas(area, render_areas[area], {
+              info,
+              optionsRender
+            });
           }
-
         } catch(err) {
           console.log(err);
           console.log('plugin: can not load plugin '+ pluginName);

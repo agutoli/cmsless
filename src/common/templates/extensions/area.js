@@ -15,6 +15,11 @@ module.exports = function({ $core }) {
   this.run = function(context, areaName, callback) {
     const area_id = `${context.ctx.moduleName}.${areaName}`;
     const plugins = module_areas[area_id] || [];
-    callback(null, plugins.map(plugin => plugin($core)).join(''));
+
+    const items = plugins.map(plugin => {
+      return plugin.render({ $core, $options: plugin.opts });
+    });
+
+    callback(null, items.join(''))
   };
 };
